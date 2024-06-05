@@ -1,16 +1,37 @@
 import { Button, Checkbox, Form, Input} from 'antd';
-import './index.less';
+import { useDispatch, useSelector } from 'react-redux';
+import type {RootState} from '@/store/store'
+import {counterSlice} from '@/store/homeSlice'
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import styles from './index.module.less';
 function Home() {
-  console.log(import.meta.env.MODE)
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const value = useSelector((state:RootState)=>state.home.value)
+  console.log(value,'value')
+  useEffect(()=>{
+    dispatch(counterSlice.actions.resetUser()) 
+  },[])
   const onFinish = (values: unknown) => {
     console.log('Success:', values);
+    dispatch(counterSlice.actions.increment())
   };
-
+  const goAbout = () =>{
+    navigate('/about')
+  }
   const onFinishFailed = (errorInfo: unknown) => {
     console.log('Failed:', errorInfo);
   };
   return (
     <>
+      <div className={styles.red}>
+         {value}
+         <div className={styles.green}>
+         {value + 1}
+         </div>
+      </div>
+      <Button type="primary" onClick={goAbout}>primary</Button>
       <Form
       name="basic"
       labelCol={{ span: 8 }}

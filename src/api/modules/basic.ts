@@ -8,8 +8,7 @@ import Abstract from '../abstract'
 //   AuthLoginType
 // } from '../types'
 import { IObject } from '@/utils/commonInterface'
-const whoApi = process.env.VUE_APP_Who
-const tokenApi = process.env.VUE_APP_TokenUrl
+const whoApi = import.meta.env.REACT_APP_TOKEN_URL
 
 class Basic extends Abstract {
   /**
@@ -25,7 +24,7 @@ class Basic extends Abstract {
     *
     */
   refreshTokenApi (data: IObject) {
-    return this.postReq({ baseURL: tokenApi, url: '/auth/refresh-token', data })
+    return this.postReq({ baseURL: whoApi, url: '/auth/refresh-token', data })
   }
 }
 

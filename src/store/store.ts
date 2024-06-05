@@ -7,3 +7,4 @@ export const store = configureStore({
     home: counterSlice.reducer
   },
 });
+export type RootState = ReturnType<typeof store.getState>

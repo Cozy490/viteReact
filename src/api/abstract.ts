@@ -9,12 +9,11 @@ import { AxiosRequest } from './types'
 import { IObject } from '@/utils/commonInterface'
 import qs from 'qs'
 class Abstract {
-      protected baseURL: any = process.env.VUE_APP_BaseURL;
+      protected baseURL: string = import.meta.env.VITE_APP_BASE_API;
       protected headers: IObject = {
         ContentType: 'application/json;charset=UTF-8'
       }
 
-      private url = ''
       private async apiAxios ({ baseURL = this.baseURL, headers = this.headers, method, url, data, params, responseType }: AxiosRequest): Promise<IObject> {
         console.log('baseURL', url !== '/auth/refresh-token')
         if (url !== '/auth/refresh-token') {

@@ -8,14 +8,12 @@ export const counterSlice = createSlice({
   initialState,
   reducers: {
     increment: (state) => {
-      state.value += 1;
+      state.value ++;
     },
     decrement: (state) => {
       state.value -= 1;
     },
-    reset:()=>{
-      return { value: 3}
-    }
+   resetUser: () => initialState
   },
 });
 export const getInfo = createAsyncThunk(
@@ -23,7 +21,7 @@ export const getInfo = createAsyncThunk(
   async (_, { dispatch }) => {
     const res = await new Promise(resolve => {
       setTimeout(() => {
-        dispatch(counterSlice.actions.reset());
+        dispatch(counterSlice.actions.resetUser());
         resolve(2);
         console.log(2233)
       }, 1000);
@@ -37,7 +35,7 @@ export const getParamsInfo = createAsyncThunk(
     console.log(params,'params');
     const res = await new Promise(resolve => {
       setTimeout(() => {
-        dispatch(counterSlice.actions.reset());
+        dispatch(counterSlice.actions.resetUser());
         resolve(2);
       }, 1000);
     });
